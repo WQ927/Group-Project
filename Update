@@ -1,0 +1,19 @@
+import bcrypt
+
+# This is the user's plaintext password
+password = "mysecretpassword"
+
+# Generate a random salt value
+salt = bcrypt.gensalt()
+
+# Hash the password with the salt
+hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+
+# Ask the user to enter their password again
+input_password = input("Please enter your password: ")
+
+# Check if the entered password matches the stored hash
+if bcrypt.checkpw(input_password.encode('utf-8'), hashed_password):
+    print("Access granted!")
+else:
+    print("Access denied.")
